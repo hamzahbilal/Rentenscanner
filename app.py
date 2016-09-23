@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 import json
+import time
 
 import requests
 from flask import Flask, request
@@ -48,7 +51,9 @@ def webhook():
                         sender_id = messaging_event["sender"]["id"]        
                         recipient_id = messaging_event["recipient"]["id"]
                         image_url = messaging_event["message"]["attachments"][0]["payload"]["url"]
-                        response_text = "got an image: " + image_url
+                        #response_text = "Super, danke! Ich werde jetzt mal auswerten, was Dir zusteht... "
+                        time.sleep(5)
+                        response_text = "Also Manfred, noch einmal vielen Dank! Du bekommst laut aktuellen Stand eine Altersrente von EUR 1.185,58. Wusstest Du, dass bei Deinem geplanten Altersrenteneintritt 2032 bei einer Inflationsrate von 2 % nur noch einem heutigen Wert von EUR 523,74 entspricht? Möchtest Du mehr wissen?"
 
                     elif checkJson(messaging_event) == "text":
 
@@ -56,7 +61,16 @@ def webhook():
                         recipient_id = messaging_event["recipient"]["id"]
                         incoming_text = messaging_event["message"]["text"]
 
-                        response_text = "got a text:" + incoming_text
+                        if incoming_text.lower().startswith('hallo') or incoming_text.lower().startswith('hi'):
+                            response_text = "Hi! Ich bin der Allianz Renten- scanner! Schick mir Deine Rentenbescheinigung!"
+                        elif incoming_text.lower().startswith('ja'):
+                            response_text = "OK, gerne. In den von den offiziellen Stellen verschickten Renteninformationen fehlen die Angaben zum realen Geldwert der erreichbaren Rente. Darauf solltest Du immer achten, wenn Du diese Dokumente liest. Willst Du mehr zum Thema Inflation wissen? Oder soll ich Dich mit einem Berater verknüpfen?"
+                        elif incoming_text.lower().startswith('berater') or incoming_text.lower().startswith('ein berater'):
+                            response_text = "Super, willst Du einen Vertreter in Deiner Nähe kennenlernen oder direkt von uns betreut werden?"
+                        elif incoming_text.lower().startswith('vertreter') or incoming_text.lower().startswith('ein vertreter'):
+                            response_text = "Hier sind zwei Agenturen in Deiner Nähe. Wir leiten Deine Kontaktdaten weiter, Sie melden sich bei Dir zur Terminvereinbarung!"
+                        elif incoming_text.lower().startswith('nein'):
+                            response_text = "OK"
 
                     send_message(sender_id, response_text)
 
