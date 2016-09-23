@@ -53,7 +53,7 @@ def webhook():
                         image_url = messaging_event["message"]["attachments"][0]["payload"]["url"]
                         #response_text = "Super, danke! Ich werde jetzt mal auswerten, was Dir zusteht... "
                         time.sleep(5)
-                        response_text = "Also Manfred, noch einmal vielen Dank! Du bekommst laut aktuellen Stand eine Altersrente von EUR 1.185,58. Wusstest Du, dass bei Deinem geplanten Altersrenteneintritt 2032 bei einer Inflationsrate von 2 % nur noch einem heutigen Wert von EUR 523,74 entspricht? Möchtest Du mehr wissen?"
+                        response_text = "Also, noch einmal vielen Dank! Du bekommst laut aktuellen Stand eine Altersrente von EUR 1.185,58. Wusstest Du, dass bei Deinem geplanten Altersrenteneintritt 2032 bei einer Inflationsrate von 2 % nur noch einem heutigen Wert von EUR 523,74 entspricht? Möchtest Du mehr wissen?"
 
                     elif checkJson(messaging_event) == "text":
 
@@ -108,4 +108,4 @@ def send_message(recipient_id, message_text):
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
