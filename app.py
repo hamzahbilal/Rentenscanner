@@ -101,7 +101,7 @@ def send_message(recipient_id, message_text):
             "text": message_text
         }
     })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=EAACsJddva3cBAHBDXTvYuHnMPBRZBZCdqsx8AbskK1LUK2G3t3nNCibShZAiZBPaeHTKunmZCySycmrnoVIBtOr1jQzAkaW58lIbl0xVqTbsm2yKwgUhbLEcgTIdViEbaGgUCo3n2c8nsZAfrq0kTfqCrwOyO4rUyGXOqShwsUkgZDZD", params=params, headers=headers, data=data)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
