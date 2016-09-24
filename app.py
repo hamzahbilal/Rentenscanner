@@ -9,7 +9,7 @@ import requests
 from flask import Flask, request
 
 VERIFY_TOKEN = '1122332211'
-PAGE_ACCESS_TOKEN = 'EAACsJddva3cBAHBDXTvYuHnMPBRZBZCdqsx8AbskK1LUK2G3t3nNCibShZAiZBPaeHTKunmZCySycmrnoVIBtOr1jQzAkaW58lIbl0xVqTbsm2yKwgUhbLEcgTIdViEbaGgUCo3n2c8nsZAfrq0kTfqCrwOyO4rUyGXOqShwsUkgZDZD'
+PAGE_ACCESS_TOKEN = 'EAACgjDZABaKMBAO7I7o21v3aO76LeaePQpZBRHOFmwv6UNeg91fxnjmzGDLMHmMPh8KfIZBVp8gqN07eFXvMvwzX0PCkZBZAw0C7rIAz0uc3ZBpBFP3h8XoYTNTGELO3ZAO2miQkokuuhHZCSpycjaNcuYWA42t2ZB9ZCbHa8ZAzdYyZBwZDZD'
 
 
 app = Flask(__name__)
@@ -101,7 +101,7 @@ def send_message(recipient_id, message_text):
             "text": message_text
         }
     })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=EAACsJddva3cBAHBDXTvYuHnMPBRZBZCdqsx8AbskK1LUK2G3t3nNCibShZAiZBPaeHTKunmZCySycmrnoVIBtOr1jQzAkaW58lIbl0xVqTbsm2yKwgUhbLEcgTIdViEbaGgUCo3n2c8nsZAfrq0kTfqCrwOyO4rUyGXOqShwsUkgZDZD", params=params, headers=headers, data=data)
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages?", params=params, headers=headers, data=data)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
