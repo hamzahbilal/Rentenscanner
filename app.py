@@ -31,20 +31,14 @@ def webhook():
 
     data = request.get_json()
 
-    response_text = "initial dummy text"
+    response_text = ":)"
 
     if data["object"] == "page":
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
 
-                if messaging_event.get("message"):  
-
-                    # print '+++++++++++++++++'
-                    # print 'NEW MESSAGE!!!!!!!'
-                    # print '+++++++++++++++++'
-                    # print messaging_event
-                    # print '+++++++++++++++++'
+                if messaging_event.get("message"):
                     
                     if checkJson(messaging_event) == "image":
 
@@ -68,9 +62,11 @@ def webhook():
                         elif incoming_text.lower().startswith('berater') or incoming_text.lower().startswith('ein berater'):
                             response_text = "Super, willst Du einen Vertreter in Deiner Nähe kennenlernen oder direkt von uns betreut werden?"
                         elif incoming_text.lower().startswith('vertreter') or incoming_text.lower().startswith('ein vertreter'):
-                            response_text = "Hier sind zwei Agenturen in Deiner Nähe. Wir leiten Deine Kontaktdaten weiter, Sie melden sich bei Dir zur Terminvereinbarung!"
+                            response_text = "Hier sind zwei Agenturen in Deiner Nähe. Wir leiten Deine Kontaktdaten weiter, Sie melden sich bei Dir zur Terminvereinbarung: \n - Kaszynski und Hoffmann OHG \n - Vogel und Üblacker"
                         elif incoming_text.lower().startswith('nein'):
                             response_text = "OK"
+                        elif incoming_text.lower().startswith('danke'):
+                            response_text = "Bitte!"
 
                     send_message(sender_id, response_text)
 
